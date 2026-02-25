@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cổng Thanh Toán & Ủng Hộ</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* QR Section */
+        .qr-wrapper {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px dashed #ced4da;
+        }
+
+        .bank-info {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #005A3C; /* Màu đặc trưng VCB */
+            margin-bottom: 15px;
+        }
+
+        .qr-image {
+            max-width: 220px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 15px;
+        }
+
+        /* Form Section */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.15s ease-in-out;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Result Alert */
+        .alert {
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .masked-card-display {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-family: monospace;
+            margin-top: 10px;
+            color: #2c3e50;
+            background: rgba(255,255,255,0.6);
+            padding: 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="3"></rect><rect x="14" y="7" width="3" height="3"></rect><rect x="7" y="14" width="3" height="3"></rect><rect x="14" y="14" width="3" height="3"></rect></svg>
+                1. Quét mã QR (Khuyên dùng)
+            </h2>
+            <div class="qr-wrapper">
+                <div class="bank-info">
+                    Ngân hàng: Vietcombank<br>
+                    STK: 1364453518
+                </div>
+                <img src="https://img.vietqr.io/image/vcb-1364453518-compact2.png" alt="Mã QR Vietcombank" class="qr-image">
+                <p class="note">Mở App ngân hàng để quét mã. Số tiền và nội dung chuyển khoản bạn có thể tự nhập tuỳ tâm.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                2. Liên kết thẻ (Thử nghiệm)
+            </h2>
+            <p class="note" style="margin-top: 0; margin-bottom: 20px;">Hỗ trợ thẻ nội địa và thẻ quốc tế (Visa/Mastercard/JCB).</p>
+            
+            <div class="form-group">
+                <label for="cardNumber">Số thẻ ngân hàng:</label>
+                <input type="text" id="cardNumber" placeholder="Nhập số in trên thẻ của bạn..." maxlength="19" oninput="this.value = this.value.replace(/[^0-9]/g, '')" autocomplete="off">
+            </div>
+            
+            <button onclick="xacMinhThe()">Xác Minh & Liên Kết</button>
+
+            <div id="alertBox" class="alert"></div>
+        </div>
+    </div>
+
+    <script>
+        function xacMinhThe() {
+            const inputElement = document.getElementById('cardNumber');
+            const cardNumber = inputElement.value.trim();
+            const alertBox = document.getElementById('alertBox');
+
+            // Reset trạng thái thông báo
+            alertBox.style.display = 'none';
+            alertBox.className = 'alert';
+            alertBox.innerHTML = '';
+
+            // Kiểm tra tính hợp lệ: Thẻ thường có độ dài từ 16 đến 19 số
+            if (cardNumber === "" || cardNumber.length < 16) {
+                // Hiển thị thông báo LỖI (Màu đỏ)
+                alertBox.classList.add('alert-danger');
+                alertBox.innerHTML = '<strong>✘ Xác minh thất bại!</strong><br>Số thẻ không hợp lệ. Vui lòng kiểm tra lại độ dài của thẻ.';
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            // Xử lý khi thành công: Cắt 6 số đầu, 4 số cuối
+            const first6 = cardNumber.substring(0, 6);
+            const last4 = cardNumber.substring(cardNumber.length - 4);
+            const maskedCard = `${first6} ****** ${last4}`;
+
+            // Hiển thị thông báo THÀNH CÔNG (Màu xanh)
+            alertBox.classList.add('alert-success');
+            alertBox.innerHTML = `
+                <strong>✔ Liên kết thẻ thành công!</strong><br>
+                Đã xác minh thẻ hợp lệ trên hệ thống.<br>
+                <div class="masked-card-display">${maskedCard}</div>
+            `;
+            alertBox.style.display = 'block';
+            
+            // Xóa nội dung ô input sau khi xử lý xong
+            inputElement.value = '';
+        }
+    </script>
+</body>
+</html>
